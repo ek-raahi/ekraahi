@@ -1,58 +1,72 @@
+"use client";
+import React from "react";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Slider from "react-slick";
 
-import React from 'react'
-
-
+var settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
+const ImageArray = [
+  {
+    image: "/cat6.jpg",
+    text: "Party Time",
+  },
+  {
+    image: "/cat6.jpg",
+    text: "Day Out",
+  },
+  {
+    image: "/cat6.jpg",
+    text: "Girls Night Out",
+  },
+  {
+    image: "/cat6.jpg",
+    text: "Airport Look",
+  },
+  {
+    image: "/cat6.jpg",
+    text: "Kitchen Look",
+  },
+  {
+    image: "/cat6.jpg",
+    text: "Traditional Look",
+  },
+];
 
 const BestSellers = () => {
   return (
     <div>
-        <div className='text-5xl font-{550} text-[#3b3a3a] font-serif flex justify-center items-center py-10 '>
-            <h1>Best Sellers</h1>
-        </div>
-        <div className='flex justify-center items-center'>
-            <div className="carousel  h-[87vh] w-[85vw] gap-4">
-                    <div className='carousel-item font-serif w-[28%] h-full relative'>
-                        <div className='absolute bottom-0 text-white flex flex-col justify-center items-center text-3xl leading-relaxed h-[14vh] w-full fade z-10'>
-                            <h2>Party Time</h2>
-                        </div>
-                        <img src={'/cat6.jpg'} alt="cat1" className='object-cover h-full'/>
-                    </div>
-                    <div className='carousel-item font-serif w-[28%] h-full relative'>
-                        <div className='absolute bottom-0 text-white flex flex-col justify-center items-center text-3xl leading-relaxed h-[14vh] w-full fade z-10'>
-                            <h2>Day Out</h2>
-                        </div>
-                        <img src={'/cat6.jpg'} alt="cat1" className='object-cover h-full'/>
-                    </div>
-                    <div className='carousel-item font-serif w-[28%] h-full relative'>
-                        <div className='absolute bottom-0 text-white flex flex-col justify-center items-center text-3xl leading-relaxed h-[14vh] w-full fade z-10'>
-                            <h2>Girls Night Out</h2>
-                        </div>
-                        <img src={'/cat6.jpg'} alt="cat1" className='object-cover h-full'/>
-                    </div>
-                    <div className='carousel-item font-serif w-[28%] h-full relative'>
-                        <div className='absolute bottom-0 text-white flex flex-col justify-center items-center text-3xl leading-relaxed h-[14vh] w-full fade z-10'>
-                            <h2>Airport Look</h2>
-                        </div>
-                        <img src={'/cat6.jpg'} alt="cat1" className='object-cover h-full'/>
-                    </div>
-                    <div className='carousel-item font-serif w-[28%] h-full relative'>
-                        <div className='absolute bottom-0 text-white flex flex-col justify-center items-center text-3xl leading-relaxed h-[14vh] w-full fade z-10'>
-                            <h2>Kitchen Look</h2>
-                        </div>
-                        <img src={'/cat6.jpg'} alt="cat1" className='object-cover h-full'/>
-                    </div>
-                    <div className='carousel-item font-serif w-[28%] h-full relative'>
-                        <div className='absolute bottom-0 text-white flex flex-col justify-center items-center text-3xl leading-relaxed h-[14vh] w-full fade z-10'>
-                            <h2>Traditional Look</h2>
-                        </div>
-                        <img src={'/cat6.jpg'} alt="cat1" className='object-cover h-full'/>
-                    </div>
-                  
-            </div>
-        </div>
-        
-    </div>
-  )
-}
+      <div className="text-5xl font-550 text-[#3b3a3a] font-serif flex justify-center items-center py-10">
+        <h1>Best Sellers</h1>
+      </div>
+      <Slider {...settings}>
+      <div>
+        <h3>1</h3>
+      </div>
+      <div>
+        <h3>2</h3>
+      </div>
+      <div>
+        <h3>3</h3>
+      </div>
+      <div>
+        <h3>4</h3>
+      </div>
+      <div>
+        <h3>5</h3>
+      </div>
+      <div>
+        <h3>6</h3>
+      </div>
+    </Slider>
 
-export default BestSellers
+    </div>
+  );
+};
+
+export default BestSellers;

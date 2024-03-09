@@ -1,83 +1,74 @@
-import Image from 'next/image'
-import React from 'react'
+"use client"
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import Image from 'next/image';
+import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 
-
+const images = [
+  {
+    image: "/cat1.jpg",
+    text: "Trend Tops",
+  },
+  {
+    image: "/cat2.jpg",
+    text: "Ethnic Extravaganza",
+  },
+  {
+    image: "/cat3.jpg",
+    text: "Everyday Elegance",
+  },
+  {
+    image: "/cat4.jpg",
+    text: "Light, Camera, Fashion",
+  },
+  {
+    image: "/cat5.jpg",
+    text: "Cultural Couture",
+  },
+  {
+    image: "/cat6.jpg",
+    text: "Ethereal Allure",
+  },
+  {
+    image: "/cat7.jpg",
+    text: "Global Chic",
+  }
+];
 
 const TopCategories = () => {
   return (
-    <div className='pb-[10vh]'>
-        <div className='text-5xl font-{550} text-[#3b3a3a] font-serif flex justify-center items-center py-10 '>
-            <h1>Top Categories</h1>
-        </div>
-        <div className='flex flex-row justify-center items-center'>
-            <div className="carousel flex  h-[80vh] w-[72vw]">
-                  <div className="carousel-item w-[18vw]  relative hover:scale-105 duration-700 ">
-                    <div className='absolute w-full h-full fade1 font-serif text-white text-3xl hover:bg-transparent duration-700'> 
-                        <div className='flex justify-center text-center pt-[10vh] px-[5vw]'>
-                          <h2>Trend Tops</h2>
-                        </div> 
-                    </div>
-                    <img src={'/cat1.jpg'} alt="Burger" className='object-fit'/>
-                  </div> 
-
-                  <div className="carousel-item w-[18vw] relative hover:scale-105 duration-700">
-                    <div className='absolute fade1 w-full h-full font-serif text-white text-3xl hover:bg-transparent duration-700'> 
-                        <div className='flex justify-center text-center pt-[10vh] px-[5vw]'>
-                          <h2>Ethnic Extravaganza</h2>
-                        </div> 
-                    </div>
-                    <img src={'/cat2.jpg'} alt="Burger" className='object-cover'/>
-                  </div> 
-
-                  <div className="carousel-item w-[18vw] relative hover:scale-105 duration-700">
-                    <div className='absolute fade1 w-full h-full font-serif text-white text-3xl hover:bg-transparent duration-700'> 
-                        <div className='flex justify-center text-center pt-[10vh] px-[5vw] '>
-                          <h2>Everyday Elegance</h2>
-                        </div> 
-                    </div>
-                    <img src={'/cat3.jpg'} alt="Burger" className='object-cover'/>
-                  </div> 
-
-                  <div className="carousel-item w-[18vw] relative hover:scale-105 duration-700">
-                    <div className='absolute fade1 w-full h-full font-serif text-white text-3xl hover:bg-transparent duration-700'> 
-                        <div className='flex justify-center text-center pt-[10vh] px-[5vw]'>
-                          <h2>Light, Camera, Fashion</h2>
-                        </div> 
-                    </div>
-                    <img src={'/cat4.jpg'} alt="Burger" className='object-cover'/>
-                  </div> 
-
-                  <div className="carousel-item w-[18vw] relative hover:scale-105 duration-700">
-                    <div className='absolute fade1 w-full h-full font-serif text-white text-3xl hover:bg-transparent duration-700'> 
-                        <div className='flex justify-center text-center pt-[10vh] px-[5vw]'>
-                          <h2>Cultural Couture</h2>
-                        </div> 
-                    </div>
-                    <img src={'/cat5.jpg'} alt="Burger" className='object-cover'/>
-                  </div> 
-
-                  <div className="carousel-item w-[18vw] relative hover:scale-105 duration-700">
-                    <div className='absolute fade1 w-full h-full font-serif text-white text-3xl hover:bg-transparent duration-700'> 
-                        <div className='flex justify-center text-center pt-[10vh] px-[5vw]'>
-                          <h2>Ethereal Allure</h2>
-                        </div> 
-                    </div>
-                    <img src={'/cat6.jpg'} alt="Burger" className='object-cover'/>
-                  </div> 
-
-                  <div className="carousel-item w-[18vw] relative hover:scale-105 duration-700">
-                    <div className='absolute fade1 w-full h-full font-serif text-white text-3xl hover:bg-transparent duration-700'> 
-                        <div className='flex justify-center text-center pt-[10vh] px-[5vw]'>
-                          <h2>Global Chic</h2>
-                        </div> 
-                    </div>
-                    <img src={'/cat7.jpg'} alt="Burger" className='object-cover'/>
-                  </div>
-            </div>
-        </div>
+    <div>
+      <div className='text-5xl font-{550} text-[#3b3a3a] font-serif flex justify-center items-center py-10 '>
+        <h1>Top Categories</h1>
+      </div>
+      <div className='h-[67vh] w-[72vw] m-auto'>
+        <Swiper
+          slidesPerView={4}
+          loop={true}
+          // modules={[Navigation, Pagination, Scrollbar, A11y]}
+          className=' h-full'
         
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          pagination={{ clickable:true , enabled: true }}
+        >
+          {images.map((item, index) => (
+            <SwiperSlide className='h-full' key={index}>
+              <div className="relative h-full bg-yellow-400">
+                <div className="absolute inset-0 flex  justify-center fade1 hover:bg-transparent duration-700 bg-opacity-50 text-white text-3xl">
+                          <h2 className='mt-[10vh] w-3/4 text-center'>{item.text}</h2>
+                </div>
+                <Image src={item.image} alt="Category Image"  width={300} height={300} className='w-full h-full' />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default TopCategories
+export default TopCategories;
