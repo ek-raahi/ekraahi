@@ -28,11 +28,11 @@ const page = () => {
       <SideMenu/>
       <Hero/>
       <TopCategories/>
-      {/* <NewArrivals/> */}
-      {/* <ServicesIcon/> */}
-      {/* <BestSellers/> */}
-      {/* <Recommended/> */}
-      {/* <NewEra/> */}
+      <NewArrivals/>
+      <ServicesIcon/>
+      <BestSellers/>
+      <Recommended/>
+      <NewEra/>
     </div>
   )
 }
