@@ -1,42 +1,24 @@
 import React from 'react'
-import { Kaisei_Tokumin } from 'next/font/google'
-import { IoSearchOutline } from "react-icons/io5";
-import { FaShoppingBag } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
+import { GoSearch } from "react-icons/go";
+import { FaBagShopping } from "react-icons/fa6";
+import { FaUserLarge } from "react-icons/fa6";
 
 
-
-const kaisei = Kaisei_Tokumin({
-    weight: '800',
-    subsets: ['latin'],
-    
-  })
-  
-  
-  const Navbar = () => {
+const Navbar = () => {
   return (
-    <div className='w-full py-5 px-10 absolute  bg-navbar-acc bg-opacity-40 flex justify-between ' >
-<h1 style={kaisei.style} className='text-25px text-text-acc1 ml-5' >
-
-        Ek<span className='text-accent-1'>Raahi</span>
-        </h1>
-        <div>
-            <ul className='flex mt-2 gap-10'>
-                <li>
-                <IoSearchOutline color='white' size={30} />
-
-                </li>
-                <li>
-                <FaShoppingBag color='white' size={30} />
-
-                </li>
-                <li>
-                <FaUser color='white' size={30} />
-
-                </li>
-            </ul>
+    <nav className=' flex header fixed top-0 h-20 w-full justify-between z-10'>
+      <div className='font-serif flex items-center text-white text-3xl  pl-10 font-semi-bold'>Ek<span className='text-red-600'>Raahi</span></div>
+        <div className='flex items-center pr-10'>
+                <div className='flex space-x-10'>
+                    <GoSearch size={30} color='white'/>
+                    <div className='relative'>
+                      <FaBagShopping size={30} color='white'/>
+                      <div className='absolute top-0 right-0 rounded-full w-4 h-4 p-2 flex justify-center items-center bg-[#e1e1e1]'>5</div>
+                    </div>
+                    <FaUserLarge size={30} color='white'/>
+                </div>
         </div>
-        </div>
+    </nav>
   )
 }
 

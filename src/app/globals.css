@@ -1,4 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body{
+    background-color: #eadfdf;
+}
 
+.header{
+    background-color: rgba(0,0,0,0.1);
+}
+.fade{
+    background-color: rgba(0,0,0,0.6);
+}
+.fade1{
+    background-color: rgba(0,0,0,0.8);
+}
+.image1{
+    background-image: url("/public/image1.jpg");
+}
