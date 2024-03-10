@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { SlCamera } from "react-icons/sl";
 import { PiTelevisionSimple } from "react-icons/pi";

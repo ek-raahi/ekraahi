@@ -22,7 +22,7 @@ const page = () => {
       <ServicesIcon/>
       <BestSellers/>
       {/* <Recommended/> */}
-      {/* <NewEra/> */}
+      <NewEra/>
     </div>
   )
 }
