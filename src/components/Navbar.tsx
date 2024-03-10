@@ -1,13 +1,18 @@
+"use client"
 import React from 'react'
 import { GoSearch } from "react-icons/go";
 import { FaBagShopping } from "react-icons/fa6";
 import { FaUserLarge } from "react-icons/fa6";
+import { useRouter } from 'next/navigation';
+
 
 
 const Navbar = () => {
+  const router = useRouter()
   return (
+    <div>
     <nav className=' flex header fixed top-0 h-20 w-full justify-between z-10'>
-      <div className='font-serif flex items-center text-white text-3xl  pl-10 font-semi-bold'>Ek<span className='text-red-600'>Raahi</span></div>
+      <div onClick={()=>router.replace("/")}  className=' cursor-pointer font-serif flex items-center text-white text-3xl  pl-10 font-semi-bold'>Ek<span className='text-red-600'>Raahi</span></div>
         <div className='flex items-center pr-10'>
                 <div className='flex space-x-10'>
                     <GoSearch size={30} color='white'/>
@@ -19,6 +24,7 @@ const Navbar = () => {
                 </div>
         </div>
     </nav>
+    </div>
   )
 }
 

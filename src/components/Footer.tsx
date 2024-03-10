@@ -6,7 +6,7 @@ import { RiTwitterXLine } from "react-icons/ri"
 
 const Footer = () => {
   return (
-    <div className='flex flex-col  items-center justify-between font-serif bg-[#1E1E1E] h-[95vh]'>
+    <footer className='flex flex-col  items-center justify-between font-serif bg-[#1E1E1E] h-[80vh]'>
         <div className='flex justify-between w-[80vw] mt-[15vh]'>
             <div className='flex flex-col justify-center cursor-pointer  text-[#d5d0c3] text-xl  w-[18vw] h-[40vh]'>
                 <h2>SHOP</h2>
@@ -39,7 +39,7 @@ const Footer = () => {
            <h2>@2024 Good Tribe Pvt. Ltd. All Right Reserved</h2>
         </div>
         
-    </div>
+    </footer>
   )
 }
 
