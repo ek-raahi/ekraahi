@@ -20,7 +20,7 @@ const page = () => {
       <TopCategories/>
       <NewArrivals/>
       <ServicesIcon/>
-      {/* <BestSellers/> */}
+      <BestSellers/>
       {/* <Recommended/> */}
       {/* <NewEra/> */}
     </div>
