@@ -20,9 +20,9 @@ const page = () => {
       <TopCategories/>
       <NewArrivals/>
       <ServicesIcon/>
+      <NewEra/>
       <BestSellers/>
       {/* <Recommended/> */}
-      <NewEra/>
     </div>
   )
 }
