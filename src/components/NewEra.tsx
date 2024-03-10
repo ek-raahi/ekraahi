@@ -57,9 +57,8 @@ const NewEra = () => {
           className=' h-full'
           
           autoplay={{ delay: 2500, disableOnInteraction: false }}
-          // pagination={{ clickable:true , enabled: true }}
           >
-          {ImageArray.map((item, index) => (
+          {ImageArray.map((_, index) => (
             <SwiperSlide className='h-full' key={index}>
               <InstagramTemp/>
             

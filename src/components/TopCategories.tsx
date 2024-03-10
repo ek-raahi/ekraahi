@@ -37,7 +37,7 @@ const images = [
 
 const TopCategories = () => {
   return (
-    <div>
+    <div id='topCategories'>
       <div className='text-5xl font-{550} text-[#3b3a3a] font-serif flex justify-center items-center py-10 '>
         <h1>Top Categories</h1>
       </div>

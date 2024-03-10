@@ -2,7 +2,7 @@ import React from 'react'
 
 const NewArrivals = () => {
   return (
-    <div className='flex flex-col justify-center items-center pb-[10vh]'>
+    <div id='newArrivals' className='flex flex-col justify-center items-center pb-[10vh]'>
         <div className='text-5xl font-{550} text-[#3b3a3a] font-serif flex justify-center items-center py-10 '>
             <h1>New Arrivals</h1>
         </div>

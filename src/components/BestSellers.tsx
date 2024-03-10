@@ -37,7 +37,7 @@ const ImageArray = [
 
 const BestSellers = () => {
   return (
-    <div className="pb-40">
+    <div id="bestsellers" className="pb-40">
       <div className="text-5xl font-550 text-[#3b3a3a] font-serif flex justify-center items-center py-10">
         <h1>Best Sellers</h1>
       </div>

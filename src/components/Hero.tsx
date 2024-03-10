@@ -10,7 +10,7 @@ const Hero = () => {
       }
 
   return (
-    <div className='relative'>
+    <div id='hero' className='relative'>
       <div className='h-screen w-full flex text-[#E6E0D2] text-5xl font-semibold items-center justify-between bg-[#1E1E1E]'>
             <div className='pl-32 w-2/5 leading-normal mt-32'>
                   <p>Discover Your Signature Look at Ek<span className='text-red-600'>Raahi</span> </p>
