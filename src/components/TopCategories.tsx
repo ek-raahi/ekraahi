@@ -32,10 +32,6 @@ const images = [
   {
     image: "/cat6.jpg",
     text: "Ethereal Allure",
-  },
-  {
-    image: "/cat7.jpg",
-    text: "Global Chic",
   }
 ];
 
@@ -49,7 +45,8 @@ const TopCategories = () => {
         <Swiper
           slidesPerView={4}
           loop={true}
-          // modules={[Navigation, Pagination, Scrollbar, A11y]}
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          navigation={true}
           className=' h-full'
         
           autoplay={{ delay: 2500, disableOnInteraction: false }}
