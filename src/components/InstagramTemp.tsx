@@ -17,7 +17,7 @@ import { FiUser } from "react-icons/fi";
 
 function InstagramTemp() {
   return (
-    <div className='flex flex-col bg-[#d5d0c3] h-[500px] w-[350px] rounded-2xl gap-0.25'>
+    <div className='flex flex-col bg-white h-[500px] w-[350px] rounded-2xl gap-0.25'>
         <div className='flex px-[5%] mt-[5%] justify-between'>
             <div className='flex gap-3'>
                 <SlCamera size={28} color='black'/>
