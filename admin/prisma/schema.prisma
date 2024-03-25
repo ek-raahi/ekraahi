@@ -1,0 +1,137 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id            String    @id @default(cuid())
+    name          String
+    email         String    @unique
+    active        Boolean   @default(true)
+    password      String
+    image         String?
+    emailVerified DateTime? @db.Timestamptz()
+
+    createdAt DateTime @default(now()) @db.Timestamptz()
+    updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz()
+
+    createdProducts     Product[]     @relation("productCreatedBy")
+    updatedProducts     Product[]     @relation("productUpdatedBy")
+    createdCategories   Category[]    @relation("categoryCreatedBy")
+    updatedCategories   Category[]    @relation("categoryUpdatedBy")
+    createdBrands       Brand[]       @relation("brandCreatedBy")
+    updatedBrands       Brand[]       @relation("brandUpdatedBy")
+
+    @@map("Users")
+}
+
+model Resource {
+    id               String @id @default(cuid())
+    originalFilename String
+    newFilename      String @unique
+    url              String @unique
+
+    createdAt   DateTime     @default(now()) @db.Timestamptz()
+    updatedAt   DateTime     @default(now()) @updatedAt @db.Timestamptz()
+    productId   String?
+    portfolioId String?
+    product     Product?     @relation("productImages", fields: [productId], references: [id])
+    category    Category?
+    brand       Brand?
+
+    @@map("Resources")
+}
+
+model Product {
+    id          String @id @default(uuid())
+    name        String
+    description Json?
+    slug        String @unique
+    mrp         Float
+    price       Float
+
+    productImages     Resource[]        @relation("productImages")
+    productCategories ProductCategory[]
+    productBrands     ProductBrand[]
+
+    createdById String
+    updatedById String
+    createdAt   DateTime @default(now()) @db.Timestamptz()
+    updatedAt   DateTime @updatedAt @db.Timestamptz()
+    createdBy   User     @relation("productCreatedBy", fields: [createdById], references: [id])
+    updatedBy   User     @relation("productUpdatedBy", fields: [updatedById], references: [id])
+
+    @@map("Products")
+}
+
+model Category {
+    id          String @id @default(uuid())
+    name        String
+    slug        String @unique
+    description Json?
+    order       Int
+
+    resourceId String? @unique
+
+    resource Resource? @relation(fields: [resourceId], references: [id])
+
+    createdById      String
+    updatedById      String
+    createdAt        DateTime          @default(now()) @db.Timestamptz()
+    updatedAt        DateTime          @updatedAt @db.Timestamptz()
+    createdBy        User              @relation("categoryCreatedBy", fields: [createdById], references: [id])
+    updatedBy        User              @relation("categoryUpdatedBy", fields: [updatedById], references: [id])
+    categoryProducts ProductCategory[]
+
+    @@map("Categories")
+}
+
+model ProductCategory {
+    id         String @id @default(uuid())
+    productId  String
+    categoryId String
+
+    product  Product  @relation(fields: [productId], references: [id])
+    category Category @relation(fields: [categoryId], references: [id])
+
+    @@unique([productId, categoryId])
+    @@map("ProductCategories")
+}
+
+model ProductBrand {
+    id        String @id @default(uuid())
+    productId String
+    brandId   String
+
+    product Product @relation(fields: [productId], references: [id])
+    brand   Brand   @relation(fields: [brandId], references: [id])
+
+    @@unique([productId, brandId])
+    @@map("ProductBrands")
+}
+
+model Brand {
+    id          String  @id @default(uuid())
+    name        String
+    slug        String  @unique
+    description Json?
+    isTopBrand  Boolean @default(false)
+
+    resourceId String? @unique
+
+    resource      Resource?      @relation(fields: [resourceId], references: [id])
+    brandProducts ProductBrand[]
+
+    createdById String
+    updatedById String
+    createdAt   DateTime @default(now()) @db.Timestamptz()
+    updatedAt   DateTime @updatedAt @db.Timestamptz()
+    createdBy   User     @relation("brandCreatedBy", fields: [createdById], references: [id])
+    updatedBy   User     @relation("brandUpdatedBy", fields: [updatedById], references: [id])
+
+    @@map("Brands")
+}
