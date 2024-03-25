@@ -12,25 +12,28 @@
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
+    "@t3-oss/env-nextjs": "^0.9.2",
+    "bcryptjs": "^2.4.3",
     "next": "14.1.4",
+    "next-auth": "^4.24.7",
     "react": "^18",
-    "react-dom": "^18",
-    "@t3-oss/env-nextjs": "^0.9.2"
+    "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/eslint": "^8.56.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "postcss": "^8",
+    "prettier": "^3.2.5",
     "prisma": "^5.11.0",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5",
-    "prettier": "^3.2.5",
-    "@types/eslint": "^8.56.0",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0"
+    "typescript": "^5"
   }
 }
