@@ -1,11 +1,11 @@
-import { prisma } from '@/lib/db'
-import { compare } from 'bcryptjs'
+import { prisma } from "@/lib/db";
+import { compare } from "bcryptjs";
 import {
   getServerSession,
   type DefaultSession,
-  type NextAuthOptions
-} from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
+  type NextAuthOptions,
+} from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -13,11 +13,11 @@ import CredentialsProvider from 'next-auth/providers/credentials'
  *
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
-      id: string
-    } & DefaultSession['user']
+      id: string;
+    } & DefaultSession["user"];
   }
 
   interface User {}
@@ -30,86 +30,88 @@ declare module 'next-auth' {
  */
 export const authOptions: NextAuthOptions = {
   pages: {
-    signIn: '/login'
+    signIn: "/login",
   },
   callbacks: {
     async session({ session, user, token }) {
       if (session.user) {
         if (user) {
-          session.user.id = user.id
+          session.user.id = user.id;
         }
         if (token?.user) {
-          session.user.id = (token.user as { id: string }).id
+          session.user.id = (token.user as { id: string }).id;
 
           // handle when user get inactivated
           const u = await prisma.user.findFirst({
             where: {
               id: session.user.id,
-              active: true
+              active: true,
             },
             select: {
               id: true,
               name: true,
-              email: true
-            }
-          })
-          if (!u) throw new Error('Invalid session')
-          session.user.name = u.name
-          session.user.email = u.email
+              email: true,
+            },
+          });
+          if (!u) throw new Error("Invalid session");
+          session.user.name = u.name;
+          session.user.email = u.email;
         }
       }
-      return session
+      return session;
     },
     jwt({ token, user }) {
-      user && (token.user = user)
-      return token
-    }
+      user && (token.user = user);
+      return token;
+    },
   },
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {
         username: {
-          label: 'Email',
-          type: 'text',
-          placeholder: 'Enter email'
+          label: "Email",
+          type: "text",
+          placeholder: "Enter email",
         },
         password: {
-          label: 'Password',
-          type: 'password',
-          placeholder: 'Enter Password'
-        }
+          label: "Password",
+          type: "password",
+          placeholder: "Enter Password",
+        },
       },
       async authorize(credentials) {
-        if (!credentials) return null
+        if (!credentials) return null;
         const user = await prisma.user.findFirst({
           where: {
             email: credentials.username,
-            active: true
-          }
-        })
+            active: true,
+          },
+        });
+
         if (
           user &&
           user.password &&
           (await compare(credentials.password, user.password))
         ) {
+          console.log("Verified");
           return {
             id: user.id,
             email: user.email,
             name: user.name,
-            image: user.image
-          }
+            image: user.image,
+          };
         } else {
-          return null
+          return null;
         }
-      }
-    })
-  ]
-}
+      },
+    }),
+  ],
+};
 
 /**
  * Wrapper for `getServerSession` so that you don't need to import the `authOptions` in every file.
  *
  * @see https://next-auth.js.org/configuration/nextjs
  */
-export const getAuthSession = () => getServerSession(authOptions)
+export const getAuthSession = () => getServerSession(authOptions);

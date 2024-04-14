@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -19,12 +20,12 @@ model User {
     createdAt DateTime @default(now()) @db.Timestamptz()
     updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz()
 
-    createdProducts     Product[]     @relation("productCreatedBy")
-    updatedProducts     Product[]     @relation("productUpdatedBy")
-    createdCategories   Category[]    @relation("categoryCreatedBy")
-    updatedCategories   Category[]    @relation("categoryUpdatedBy")
-    createdBrands       Brand[]       @relation("brandCreatedBy")
-    updatedBrands       Brand[]       @relation("brandUpdatedBy")
+    createdProducts   Product[]  @relation("productCreatedBy")
+    updatedProducts   Product[]  @relation("productUpdatedBy")
+    createdCategories Category[] @relation("categoryCreatedBy")
+    updatedCategories Category[] @relation("categoryUpdatedBy")
+    createdBrands     Brand[]    @relation("brandCreatedBy")
+    updatedBrands     Brand[]    @relation("brandUpdatedBy")
 
     @@map("Users")
 }
@@ -35,11 +36,11 @@ model Resource {
     newFilename      String @unique
     url              String @unique
 
-    createdAt   DateTime     @default(now()) @db.Timestamptz()
-    updatedAt   DateTime     @default(now()) @updatedAt @db.Timestamptz()
+    createdAt   DateTime  @default(now()) @db.Timestamptz()
+    updatedAt   DateTime  @default(now()) @updatedAt @db.Timestamptz()
     productId   String?
     portfolioId String?
-    product     Product?     @relation("productImages", fields: [productId], references: [id])
+    product     Product?  @relation("productImages", fields: [productId], references: [id])
     category    Category?
     brand       Brand?
 
